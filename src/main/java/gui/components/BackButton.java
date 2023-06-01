@@ -1,5 +1,7 @@
 package gui.components;
 
+import gui.game.StartGUI;
+
 import javax.swing.*;
 
 public class BackButton extends JButton {
@@ -11,6 +13,7 @@ public class BackButton extends JButton {
         addActionListener(e -> {
             //TODO Open Main Menu
             frame.dispose();
+            new StartGUI();
         });
     }
 }

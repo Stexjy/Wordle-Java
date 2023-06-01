@@ -28,12 +28,6 @@ public class InputPanel extends JPanel {
         }
     }
 
-    public void addToWord() {
-        for (int i = 0; i < 5; i++) {
-            word.setCharAt(i, cells[currentRow][i].getText().charAt(0));
-        }
-    }
-
     public InputPanel() {
         super();
         setLayout(gridLayout);
@@ -61,6 +55,12 @@ public class InputPanel extends JPanel {
         }
         Random random = new Random();
         wordToGuess = l.get(random.nextInt(l.size()));
+    }
+
+    public void addToWord() {
+        for (int i = 0; i < 5; i++) {
+            word.setCharAt(i, cells[currentRow][i].getText().charAt(0));
+        }
     }
 
     public void insertText(char c) {
@@ -151,11 +151,5 @@ public class InputPanel extends JPanel {
         StartGUI.startGui.gameGui.errorLabel.setVisible(true);
         Thread.sleep(2000);
         StartGUI.startGui.gameGui.errorLabel.setVisible(false);
-    }
-
-    public void changeColor() {
-        for (int i = 0; i < 5; i++) {
-
-        }
     }
 }

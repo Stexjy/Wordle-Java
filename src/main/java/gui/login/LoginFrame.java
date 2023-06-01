@@ -2,6 +2,7 @@ package gui.login;
 
 import database.DatabaseManager;
 import gui.components.BackButton;
+import gui.game.StartGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,8 +60,10 @@ public class LoginFrame extends JFrame {
         submitButton.addActionListener(e -> {
             if(!DatabaseManager.getInstance().login(emailField.getText(), passwordField.getText()))
                 errorText.setText("Le credenziali inserite sono invalide");
-            else
+            else {
                 dispose();
+                new StartGUI();
+            }
         });
         mainPanel.add(submitButton);
 

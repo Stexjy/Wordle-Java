@@ -3,6 +3,7 @@ package gui.login;
 import database.DatabaseManager;
 import database.exceptions.AlreadyExistsException;
 import gui.components.BackButton;
+import gui.game.StartGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -70,6 +71,7 @@ public class RegisterFrame extends JFrame {
             try{
                 DatabaseManager.getInstance().createUser(usernameField.getText(), emailField.getText(), passwordField.getText());
                 dispose();
+                new StartGUI();
             }catch(AlreadyExistsException exception){
                 errorText.setText("Questo " + exception.getColumn() + " è già in uso");
             }

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class WordleGame {
     protected static Scanner sc;
-    protected static Casual_word input;
+    protected static String input;
     protected static String correct;
     protected static StringBuilder corretta;
     protected static String guess;
