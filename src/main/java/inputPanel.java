@@ -99,4 +99,10 @@ public class inputPanel extends JPanel {
         Thread.sleep(2000);
         StartGUI.startGui.gameGui.errorLabel.setVisible(false);
     }
+
+    public void changeColor() {
+        for (int i = 0; i < 5; i++) {
+
+        }
+    }
 }
