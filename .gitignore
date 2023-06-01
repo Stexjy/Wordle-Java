@@ -15,3 +15,26 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+.idea/compiler.xml
+.idea/discord.xml
+.idea/encodings.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/vcs.xml
+target/classes/com/intellij/uiDesigner/core/AbstractLayout.class
+target/classes/com/intellij/uiDesigner/core/DimensionInfo.class
+target/classes/com/intellij/uiDesigner/core/GridConstraints.class
+target/classes/com/intellij/uiDesigner/core/GridLayoutManager.class
+target/classes/com/intellij/uiDesigner/core/HorizontalInfo.class
+target/classes/com/intellij/uiDesigner/core/LayoutState.class
+target/classes/com/intellij/uiDesigner/core/Spacer.class
+target/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class
+target/classes/com/intellij/uiDesigner/core/SupportCode.class
+target/classes/com/intellij/uiDesigner/core/Util.class
+target/classes/com/intellij/uiDesigner/core/VerticalInfo.class
+target/classes/gui/components/GameButton$1.class
+target/classes/gui/components/GameButton.class
+target/classes/gui/GameGUI$1.class
+target/classes/gui/GameGUI.class
+target/classes/gui/InputPanel$1.class
+target/classes/gui/InputPanel.class
