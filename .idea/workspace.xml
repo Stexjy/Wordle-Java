@@ -4,16 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61b46730-35e8-4d6e-9aa7-34e52241df89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/components/GameButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/game/GameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/game/MainGUI.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/game/StartGUI.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/game/StartGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/components/BackButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/components/BackButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/inputPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/components/InputPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/components/GameButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/components/GameButton.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,11 +22,6 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-  </component>
-  <component name="ProjectId" id="2QaymKfdLcBrhSXs3MiNxyznUUJ" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
