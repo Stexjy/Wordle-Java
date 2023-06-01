@@ -1,6 +1,3 @@
-package Wordle_codice;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class WordleGame {
@@ -14,16 +11,6 @@ public class WordleGame {
     protected static String Nrep;
     protected static int[] Vd;
     protected static String[] vr;
-
-    public static void main(String[] args) {
-        sc = new Scanner(System.in);
-        System.out.println("WORDLE!");
-
-        input = new Casual_word();
-        correct = input.GetWord();
-
-        playWordleGame();
-    }
 
     // Funzione principale del gioco Wordle
     protected static void playWordleGame() {
