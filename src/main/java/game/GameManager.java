@@ -12,6 +12,9 @@ public class GameManager {
     private static GameManager instance;
     private AlertManager alertManager;
 
+    private StringBuilder corretta;
+    private HashMap<Character, Integer> ripetizioni = new HashMap<>();
+
     private GameStatus status;
     private String wordToGuess;
     private int row;
@@ -28,14 +31,9 @@ public class GameManager {
 
         // Conta i caratteri ripetuti nella parola corretta
         for (int i = 0; i < wordToGuess.length(); i++) {
-            for (int j = i + 1; j < wordToGuess.length(); j++) {
-                final char c = wordToGuess.charAt(i);
-                if (c == wordToGuess.charAt(j) && c != ' ') {
-                    int r = ripetizioni.get(c) == null ? 0 : ripetizioni.get(c);
-                    ripetizioni.put(c, r + 1);
-                    //corretta.setCharAt(j, ' ');
-                }
-            }
+            final char c = wordToGuess.charAt(i);
+            int r = ripetizioni.get(c) == null ? 0 : ripetizioni.get(c);
+            ripetizioni.put(c, r + 1);
         }
 
     }
@@ -77,9 +75,6 @@ public class GameManager {
         return true;
     }
 
-    private StringBuilder corretta;
-    private HashMap<Character, Integer> ripetizioni = new HashMap<>();
-
     private void checkCorrectlyPlacedLetters(String guess){
         corretta = new StringBuilder(wordToGuess);
 
@@ -92,15 +87,17 @@ public class GameManager {
     }
 
     private void checkIncorrectlyPlacedLetters(String guess) {
-        int x = 0;
+        final HashMap<Character, Integer> tempRip = new HashMap<>();
+
         for (int i = 0; i < wordToGuess.length(); i++) {
             for (int j = 0; j < wordToGuess.length(); j++) {
-                if (ripetizioni.containsKey(corretta.charAt(j)) && corretta.charAt(i) != ' ' && corretta.charAt(j) == guess.charAt(i) && x < ripetizioni.get(corretta.charAt(j))) {
+                int rip = tempRip.get(corretta.charAt(j)) == null ? 0 : corretta.charAt(j);
+
+                if (corretta.charAt(i) != ' ' && corretta.charAt(j) == guess.charAt(i) && rip < ripetizioni.get(corretta.charAt(j))) {
                     StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.YELLOW);
-                    x++;
+                    tempRip.put(corretta.charAt(j), rip + 1);
                 }
             }
-            x = 0;
         }
     }
 
