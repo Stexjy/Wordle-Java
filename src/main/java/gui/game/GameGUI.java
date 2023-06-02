@@ -20,6 +20,9 @@ public class GameGUI extends JFrame {
         setSize(1600,900);
         setLocationRelativeTo(null);
 
+        //inputPanel = new InputPanel();
+        //add(inputPanel);
+
         //Error Label
         try{
             errorLabel = new JLabel("");
