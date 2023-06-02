@@ -6,7 +6,6 @@ import gui.components.GameButton;
 import gui.login.LoginFrame;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -14,8 +13,6 @@ public class StartGUI extends JFrame {
     private JLabel title;
     public GameGUI gameGui;
     private JPanel mainPanel;
-
-    private GameButton startGame;
     private JButton log;
     private JPanel buttonsPanel;
     private GameButton startButton;
