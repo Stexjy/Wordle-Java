@@ -1,5 +1,7 @@
 package gui.game;
 
+import game.GameManager;
+import game.GameStatus;
 import gui.components.InputPanel;
 
 import javax.swing.*;
@@ -9,19 +11,18 @@ import java.awt.event.KeyListener;
 
 public class GameGUI extends JFrame {
     private JPanel mainPanel;
-    private InputPanel inputPanel;
+    public InputPanel inputPanel;
     private JLabel instructions;
     public JLabel errorLabel;
 
     public GameGUI() {
+        new GameManager();
+
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(mainPanel);
         setSize(1600,900);
         setLocationRelativeTo(null);
-
-        //inputPanel = new InputPanel();
-        //add(inputPanel);
 
         //Error Label
         try{
@@ -29,7 +30,7 @@ public class GameGUI extends JFrame {
             errorLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 50));
             errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
             errorLabel.setVisible(false);
-            errorLabel.setBounds(0, 10, 800, 100);
+            errorLabel.setBounds(0, 0, 1600, 200);
             mainPanel.add(errorLabel);
         }catch(NullPointerException exc){
 
@@ -42,6 +43,12 @@ public class GameGUI extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
+                if(GameManager.getInstance().getStatus() == GameStatus.WAIT){
+                    dispose();
+                    new StartGUI();
+                    return;
+                }
+
                 if (Character.isLetter(e.getKeyChar())) {
                     inputPanel.insertText(e.getKeyChar());
                 } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {

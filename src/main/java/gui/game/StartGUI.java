@@ -1,10 +1,12 @@
 package gui.game;
 
+import database.DatabaseManager;
 import gui.LeaderboardFrame;
 import gui.components.GameButton;
 import gui.login.LoginFrame;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -41,6 +43,7 @@ public class StartGUI extends JFrame {
 
     public static StartGUI startGui;
     public static void main(String[] args) {
+        new DatabaseManager();
         startGui = new StartGUI();
     }
 }

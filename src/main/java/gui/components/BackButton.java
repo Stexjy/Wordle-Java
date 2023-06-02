@@ -11,7 +11,6 @@ public class BackButton extends JButton {
 
         setBounds(0, 0, 35, 35);
         addActionListener(e -> {
-            //TODO Open Main Menu
             frame.dispose();
             new StartGUI();
         });

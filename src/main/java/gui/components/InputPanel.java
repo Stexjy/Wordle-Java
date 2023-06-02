@@ -1,5 +1,6 @@
 package gui.components;
 
+import game.GameManager;
 import gui.game.StartGUI;
 
 import javax.swing.*;
@@ -12,21 +13,10 @@ import java.util.List;
 import java.util.Random;
 
 public class InputPanel extends JPanel {
-    String wordToGuess;
     GridLayout gridLayout = new GridLayout(6,5,10,10);
     int currentRow = 0; int currentColumn = 0;
     JLabel[][] cells = new JLabel[6][5];
     StringBuilder word = new StringBuilder("     ");
-
-    private static final File file;
-
-    static {
-        try {
-            file = Paths.get(InputPanel.class.getClassLoader().getResource("ParoleTest.txt").toURI()).toFile();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public InputPanel() {
         super();
@@ -46,15 +36,6 @@ public class InputPanel extends JPanel {
                 add(cells[i][j]);
             }
         }
-
-        List<String> l;
-        try {
-            l = Files.readAllLines(file.toPath());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Random random = new Random();
-        wordToGuess = l.get(random.nextInt(l.size()));
     }
 
     public void addToWord() {
@@ -79,77 +60,13 @@ public class InputPanel extends JPanel {
     public void nextRow() throws InterruptedException /*throws FileNotFoundException*/ {
         addToWord();
 
-        for (int i = 0; i < 5; i++) {
-            if (word.charAt(i) == ' ') {
-                //parola corta
-                newThread(0);
-                break;
-            }
-        }
-
-        if(wordToGuess.equalsIgnoreCase(word.toString())){
-            System.out.println("Vinto");
-        }
-
-        if (currentRow < 5 && currentColumn == 5) {
-            BufferedReader reader;
-
-            try {
-                reader = new BufferedReader(new FileReader(file));
-
-                String readWord = reader.readLine();
-                while(readWord != null){
-                    if(readWord.equalsIgnoreCase(word.toString())){
-                        currentRow++;
-                        currentColumn = 0;
-                        return;
-                    }
-
-                    readWord = reader.readLine();
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            newThread(1);
-        }else if(currentRow == 5){
-            //todo HAI PERSO
+        if(GameManager.getInstance().guess(word.toString())){
+            currentRow++;
+            currentColumn = 0;
         }
     }
 
-    public void newThread(int i) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if(i == 0)
-                        tooShort();
-                    else
-                        notExists();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-        });
-        thread.start();
-    }
-
-    public void tooShort() throws InterruptedException {
-        StartGUI.startGui.gameGui.errorLabel.setText("Parola troppo corta");
-        popUp();
-    }
-
-    public void notExists() throws InterruptedException{
-        StartGUI.startGui.gameGui.errorLabel.setText("Parola non esistente");
-        popUp();
-    }
-
-    public void popUp() throws InterruptedException {
-        StartGUI.startGui.gameGui.errorLabel.setVisible(true);
-        Thread.sleep(2000);
-        StartGUI.startGui.gameGui.errorLabel.setVisible(false);
+    public void setCellColor(int index, Color color){
+        cells[GameManager.getInstance().getRow()][index].setBackground(color);
     }
 }
