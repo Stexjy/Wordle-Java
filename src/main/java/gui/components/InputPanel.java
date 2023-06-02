@@ -22,7 +22,7 @@ public class InputPanel extends JPanel {
 
     static {
         try {
-            file = Paths.get(InputPanel.class.getClassLoader().getResource("WordListFive.txt").toURI()).toFile();
+            file = Paths.get(InputPanel.class.getClassLoader().getResource("ParoleTest.txt").toURI()).toFile();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
