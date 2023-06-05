@@ -13,7 +13,8 @@ public class GameManager {
     private AlertManager alertManager;
 
     private StringBuilder corretta;
-    private HashMap<Character, Integer> ripetizioni = new HashMap<>();
+    private HashMap<Character, Integer> presenze = new HashMap<>();
+    private HashMap<Character, Integer> tempRip;
 
     private GameStatus status;
     private String wordToGuess;
@@ -32,10 +33,9 @@ public class GameManager {
         // Conta i caratteri ripetuti nella parola corretta
         for (int i = 0; i < wordToGuess.length(); i++) {
             final char c = wordToGuess.charAt(i);
-            int r = ripetizioni.get(c) == null ? 0 : ripetizioni.get(c);
-            ripetizioni.put(c, r + 1);
+            int r = presenze.get(c) == null ? 0 : presenze.get(c);
+            presenze.put(c, r + 1);
         }
-
     }
 
     //Returns whether the input was valid or not
@@ -49,13 +49,16 @@ public class GameManager {
             return false;
         }
         if(guess.equals(wordToGuess)){
-            status = GameStatus.WAIT;
+            checkCorrectlyPlacedLetters(guess);
 
+            status = GameStatus.WAIT;
             alertManager.winAlert();
 
             final User user = User.getLoggedUser();
             if(user != null)
                 DatabaseManager.getInstance().addWin(User.getLoggedUser().getId());
+
+            return true;
         }
         if(!inputCheck.exists()){
             alertManager.notExists();
@@ -77,26 +80,31 @@ public class GameManager {
 
     private void checkCorrectlyPlacedLetters(String guess){
         corretta = new StringBuilder(wordToGuess);
+        tempRip = new HashMap<>();
 
         for (int i = 0; i < wordToGuess.length(); i++) {
             if (guess.charAt(i) == wordToGuess.charAt(i)) {
+                final char c = wordToGuess.charAt(i);
+                int rip = tempRip.get(c) == null ? 0 : tempRip.get(c);
+
                 StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.GREEN);
                 corretta.setCharAt(i, ' ');
+                tempRip.put(c, rip + 1);
             }
         }
     }
 
     private void checkIncorrectlyPlacedLetters(String guess) {
-        final HashMap<Character, Integer> tempRip = new HashMap<>();
+        for(int i = 0; i < wordToGuess.length(); i++){
+            if(corretta.charAt(i) == ' ') continue;
+            if(corretta.toString().indexOf(guess.charAt(i)) == -1) continue;
 
-        for (int i = 0; i < wordToGuess.length(); i++) {
-            for (int j = 0; j < wordToGuess.length(); j++) {
-                int rip = tempRip.get(corretta.charAt(j)) == null ? 0 : corretta.charAt(j);
+            final char c = guess.charAt(i);
+            int rip = tempRip.get(c) == null ? 0 : tempRip.get(c);
 
-                if (corretta.charAt(i) != ' ' && corretta.charAt(j) == guess.charAt(i) && rip < ripetizioni.get(corretta.charAt(j))) {
-                    StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.YELLOW);
-                    tempRip.put(corretta.charAt(j), rip + 1);
-                }
+            if(rip < presenze.get(c)){
+                StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.YELLOW);
+                tempRip.put(c, rip + 1);
             }
         }
     }
