@@ -9,7 +9,7 @@ class InputCheck {
     private String wordToGuess, guess;
 
     public InputCheck(String guess){
-        this.wordsFile = new File(InputCheck.class.getClassLoader().getResource("ParoleTest.txt").getPath());
+        this.wordsFile = new File(InputCheck.class.getClassLoader().getResource("WordListFive.txt").getPath());
 
         this.wordToGuess = GameManager.getInstance().getWordToGuess();
         this.guess = guess;

@@ -49,13 +49,16 @@ public class GameManager {
             return false;
         }
         if(guess.equals(wordToGuess)){
-            status = GameStatus.WAIT;
+            checkCorrectlyPlacedLetters(guess);
 
+            status = GameStatus.WAIT;
             alertManager.winAlert();
 
             final User user = User.getLoggedUser();
             if(user != null)
                 DatabaseManager.getInstance().addWin(User.getLoggedUser().getId());
+
+            return true;
         }
         if(!inputCheck.exists()){
             alertManager.notExists();
@@ -98,7 +101,7 @@ public class GameManager {
 
             final char c = guess.charAt(i);
             int rip = tempRip.get(c) == null ? 0 : tempRip.get(c);
-            
+
             if(rip < presenze.get(c)){
                 StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.YELLOW);
                 tempRip.put(c, rip + 1);

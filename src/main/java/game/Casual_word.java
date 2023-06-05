@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Casual_word {
     public static String GetWord() {
-        String wordFile = "ParoleTest.txt";
+        String wordFile = "WordListFive.txt";
         String path = Casual_word.class.getClassLoader().getResource(wordFile).getPath().toString();
         String randomWord = null;
         try {
