@@ -24,16 +24,15 @@ public class Casual_word {
         List<String> words = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String line = reader.readLine();
-
-            while (line != null) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 words.add(line);
             }
         }
         
         Random random = new Random();
-        int randomIndex = random.nextInt(words.size());
+        double randomIndex = random.nextDouble(words.size());
         
-        return words.get(randomIndex);
+        return words.get((int) randomIndex);
     }
 }
