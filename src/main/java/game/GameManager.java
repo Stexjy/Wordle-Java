@@ -14,7 +14,7 @@ public class GameManager {
 
     private StringBuilder corretta;
     private HashMap<Character, Integer> presenze = new HashMap<>();
-    private HashMap<Character, Integer> tempRip;
+    private HashMap<Character, Integer> tempPresenze;
 
     private GameStatus status;
     private String wordToGuess;
@@ -38,7 +38,7 @@ public class GameManager {
         }
     }
 
-    //Returns whether the input was valid or not
+    //Ritorna se l'input era valido o no
     public boolean guess(String guess){
         final InputCheck inputCheck = new InputCheck(guess);
 
@@ -80,16 +80,16 @@ public class GameManager {
 
     private void checkCorrectlyPlacedLetters(String guess){
         corretta = new StringBuilder(wordToGuess);
-        tempRip = new HashMap<>();
+        tempPresenze = new HashMap<>();
 
         for (int i = 0; i < wordToGuess.length(); i++) {
             if (guess.charAt(i) == wordToGuess.charAt(i)) {
                 final char c = wordToGuess.charAt(i);
-                int rip = tempRip.get(c) == null ? 0 : tempRip.get(c);
+                int rip = tempPresenze.get(c) == null ? 0 : tempPresenze.get(c);
 
                 StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.GREEN);
                 corretta.setCharAt(i, ' ');
-                tempRip.put(c, rip + 1);
+                tempPresenze.put(c, rip + 1);
             }
         }
     }
@@ -100,11 +100,11 @@ public class GameManager {
             if(corretta.toString().indexOf(guess.charAt(i)) == -1) continue;
 
             final char c = guess.charAt(i);
-            int rip = tempRip.get(c) == null ? 0 : tempRip.get(c);
+            int rip = tempPresenze.get(c) == null ? 0 : tempPresenze.get(c);
 
             if(rip < presenze.get(c)){
                 StartGUI.startGui.gameGui.inputPanel.setCellColor(i, Color.YELLOW);
-                tempRip.put(c, rip + 1);
+                tempPresenze.put(c, rip + 1);
             }
         }
     }

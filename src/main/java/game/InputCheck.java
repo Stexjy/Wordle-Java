@@ -6,12 +6,11 @@ import java.io.*;
 
 class InputCheck {
     private File wordsFile;
-    private String wordToGuess, guess;
+    private String guess;
 
     public InputCheck(String guess){
         this.wordsFile = new File(InputCheck.class.getClassLoader().getResource("WordListFive.txt").getPath());
 
-        this.wordToGuess = GameManager.getInstance().getWordToGuess();
         this.guess = guess;
     }
     boolean tooShort(){

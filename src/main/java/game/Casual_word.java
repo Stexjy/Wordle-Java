@@ -15,7 +15,7 @@ public class Casual_word {
         try {
             randomWord = getRandomWord(path);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 		return randomWord;
     }
@@ -24,15 +24,16 @@ public class Casual_word {
         List<String> words = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
+            String line = reader.readLine();
+
+            while (line != null) {
                 words.add(line);
             }
         }
         
         Random random = new Random();
-        double randomIndex = random.nextDouble(words.size());
+        int randomIndex = random.nextInt(words.size());
         
-        return words.get((int) randomIndex);
+        return words.get(randomIndex);
     }
 }

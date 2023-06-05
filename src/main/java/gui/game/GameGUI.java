@@ -12,7 +12,6 @@ import java.awt.event.KeyListener;
 public class GameGUI extends JFrame {
     private JPanel mainPanel;
     public InputPanel inputPanel;
-    private JLabel instructions;
     public JLabel errorLabel;
 
     public GameGUI() {
@@ -67,6 +66,5 @@ public class GameGUI extends JFrame {
 
         });
 
-        instructions.setIcon(new ImageIcon("resources\\Instructions.jpg"));
     }
 }
